@@ -1,0 +1,50 @@
+
+<div class="form">
+  <h3 class="title">For influencers</h3>
+  <div class="separator"></div>
+  <button type="button" class="btn" (click)="openModal(influencersTemplate)">Get started</button>
+  <!--Modal -->
+  <ng-template #influencersTemplate>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">For influencers</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="separator"></div>
+    <div class="modal-body ld-over" [class.running]="submitted">
+      <div class="ld ld-ring ld-spin"></div>
+      <form [formGroup]="influencersForm" (ngSubmit)="submit()">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <input type="text" formControlName="firstname" class="form-control" id="inputFirstname" aria-describedby="firstnameHelp" placeholder="Firstname" required>
+              <small id="firstnameHelp" class="form-text text-danger" *ngIf="formErrors.firstname">{{ formErrors.firstname }}</small>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group">
+              <input type="text" formControlName="lastname" class="form-control" id="inputLastname" aria-describedby="lastnameHelp" placeholder="Lastname" required>
+              <small id="lastnameHelp" class="form-text text-danger" *ngIf="formErrors.lastname">{{ formErrors.lastname }}</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" formControlName="instagramUsername" class="form-control" id="inputInstagramUsername" aria-describedby="instagramUsernameHelp" placeholder="Instagram username" required>
+          <small id="instagramUsernameHelp" class="form-text text-danger" *ngIf="formErrors.instagramUsername">{{ formErrors.instagramUsername }}</small>
+        </div>
+        <div class="form-group">
+          <input type="text" formControlName="youtubeUsername" class="form-control" id="inputYoutubeUsername" aria-describedby="youtubeUsernameHelp" placeholder="Youtube username" required>
+          <small id="youtubeUsernameHelp" class="form-text text-danger" *ngIf="formErrors.youtubeUsername">{{ formErrors.youtubeUsername }}</small>
+        </div>
+
+        <div class="form-group">
+          <input type="text" formControlName="groups" class="form-control" id="inputGroups" aria-describedby="groupsHelp" placeholder="Groups" required>
+          <small id="groupsHelp" class="form-text text-danger" *ngIf="formErrors.groups">{{ formErrors.groups }}</small>
+        </div>
+        <button type="submit" [disabled]="!influencersForm.valid" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </ng-template>
+</div>

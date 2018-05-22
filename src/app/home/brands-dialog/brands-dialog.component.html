@@ -1,0 +1,47 @@
+
+  <div class="form">
+    <h3 class="title">For brands</h3>
+    <div class="separator"></div>
+    <button type="button" class="btn" (click)="openModal(brandsTemplate)">Get started</button>
+    <!-- Modal -->
+    <ng-template #brandsTemplate>
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">For brands</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="separator"></div>
+      <div class="modal-body ld-over" [class.running]="submitted">
+        <div class="ld ld-ring ld-spin"></div>
+        <form [formGroup]="brandsForm" (ngSubmit)="submit()">
+          <div class="form-group">
+            <input type="text" formControlName="name" class="form-control" id="inputNname" aria-describedby="nameHelp" placeholder="Name" required>
+            <small id="nameHelp" class="form-text text-danger" *ngIf="formErrors.name">{{ formErrors.name }}</small>
+          </div>
+          <div class="form-group">
+            <input type="tel" formControlName="phoneNumber" class="form-control" id="inputPhoneNumber" aria-describedby="phoneNumberHelp" placeholder="Phone number" required>
+            <small id="phoneNumberHelp" class="form-text text-danger" *ngIf="formErrors.phoneNumber">{{ formErrors.phoneNumber }}</small>
+          </div>
+          <div class="form-group">
+            <input type="email" formControlName="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Email" required>
+            <small id="emailHelp" class="form-text text-danger" *ngIf="formErrors.email">{{ formErrors.email }}</small>
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="marketingType" class="form-control" id="inputMarketingType" aria-describedby="marketingTypeHelp" placeholder="Marketing type" required>
+            <small id="marketingTypeHelp" class="form-text text-danger" *ngIf="formErrors.marketingType">{{ formErrors.marketingType }}</small>
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="budget" class="form-control" id="inputBudget" aria-describedby="budgetHelp" placeholder="Budget" required>
+            <small id="budgetHelp" class="form-text text-danger" *ngIf="formErrors.budget">{{ formErrors.budget }}</small>
+          </div>
+          <div class="form-group">
+            <input type="text" formControlName="startDate" placement="top" [bsConfig]="{ containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD' }" bsDatepicker class="form-control" id="inputStartDate" aria-describedby="startDateHelp" placeholder="Start date" required>
+            <small id="startDateHelp" class="form-text text-danger" *ngIf="formErrors.startDate">{{ formErrors.startDate }}</small>
+          </div>
+          <button type="submit" [disabled]="!brandsForm.valid" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </ng-template>
+
+  </div>

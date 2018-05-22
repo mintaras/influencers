@@ -22,3 +22,37 @@ body {
      border: 1px solid #ddd;
     }
 }
+.modal-header {
+    border: 0;
+}
+.form {
+  padding: 40px 20px;
+  text-align: center;
+  .title {
+    margin-bottom: 15px;
+  }
+}
+.separator {
+  height: 3px;
+  width: 120px;
+  background-color: #007bff;
+  margin: 0 auto 30px auto;
+}
+.btn,
+.modal-content,
+.form-control {
+  border-radius: 0;
+}
+.modal-body {
+  &.running {
+    cursor: not-allowed;
+  }
+}
+.modal-content {
+  .ld-spin {
+    font-size: 32px;
+  }
+  .separator {
+    margin: 0 0 10px 20px;
+  }
+}
