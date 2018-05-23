@@ -7,6 +7,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule } from 'ngx-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 
+import * as Parse from 'parse';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ContactsComponent } from './contacts/contacts.component';
@@ -17,7 +19,6 @@ import { BrandsComponent } from './brands/brands.component';
 import { InfluencersComponent } from './influencers/influencers.component';
 import { InfluencersDialogComponent } from './home/influencers-dialog/influencers-dialog.component';
 import { BrandsDialogComponent } from './home/brands-dialog/brands-dialog.component';
-
 
 @NgModule({
   declarations: [
@@ -43,4 +44,9 @@ import { BrandsDialogComponent } from './home/brands-dialog/brands-dialog.compon
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor() {
+    Parse.initialize('caAppId');
+    Parse.serverURL = 'http://localhost:4205/parse/';
+  }
+}

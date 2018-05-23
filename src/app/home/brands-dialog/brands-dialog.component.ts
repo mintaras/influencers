@@ -3,6 +3,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import * as Parse from 'parse';
 
 type UserFields = 'name' | 'phoneNumber' | 'email' | 'marketingType' | 'budget' | 'startDate';
 type FormErrors = { [u in UserFields]: string };
@@ -48,6 +49,8 @@ export class BrandsDialogComponent implements OnInit {
   }
   modalRef: BsModalRef;
   submitted: boolean = false;
+  submitOk: boolean = false;
+  submitError: boolean = false;
 
   constructor(
     private modalService: BsModalService,
@@ -116,6 +119,30 @@ export class BrandsDialogComponent implements OnInit {
 
   submit() {
     this.submitted = true;
+    var Brands = Parse.Object.extend("Brands4205");
+    var brands = new Brands();
+
+console.log(this.brandsForm.value);
+
+    brands.save(this.brandsForm.value, {
+      success: function(response) {
+        // TODO: 1) clear form 2) show success message
+        this.submitOk = true;
+        this.brandsForm.reset();
+        setTimeout(function(){
+          this.submitted = false;
+        }, 1000);
+        console.log(response);
+      },
+      error: function(response, error) {
+        // TODO: 1) show error message
+        this.submitError = true;
+        setTimeout(function(){
+          this.submitted = false;
+        }, 1000);
+        console.log('Failed to create new object, with error code: ', error);
+      }
+    });
   }
 
   openModal(template: TemplateRef<any>) {
