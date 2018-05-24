@@ -1,8 +1,9 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import * as Parse from 'parse';
 
 type UserFields = 'firstname' | 'lastname' | 'instagramUsername' | 'youtubeUsername' | 'groups';
 type FormErrors = { [u in UserFields]: string };
@@ -13,6 +14,7 @@ type FormErrors = { [u in UserFields]: string };
   styleUrls: ['./influencers-dialog.component.scss']
 })
 export class InfluencersDialogComponent implements OnInit {
+  @ViewChild(ModalDirective) modal: ModalDirective;
 
   influencersForm: FormGroup;
   formErrors: FormErrors = {
@@ -41,6 +43,8 @@ export class InfluencersDialogComponent implements OnInit {
   }
   modalRef: BsModalRef;
   submitted: boolean = false;
+  submitOk: boolean = false;
+  submitError: boolean = false;
 
   constructor(
     private modalService: BsModalService,
@@ -101,11 +105,29 @@ export class InfluencersDialogComponent implements OnInit {
   }
 
   submit() {
+    let Influencers = Parse.Object.extend("Influencers4205");
+    let influencers = new Influencers();
     this.submitted = true;
+    let that = this;
+
+    influencers.save(this.influencersForm.value, {
+      success: function(response) {
+        that.submitOk = true;
+        that.influencersForm.reset();
+      },
+      error: function(response, error) {
+        that.submitError = true;
+        console.log('Failed to create new object, with error code: ', error);
+      }
+    });
   }
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+    this.modal.show();
+  }
+
+  handler(type: string, $event: ModalDirective) {
+    this.submitted = false;
   }
 
 }

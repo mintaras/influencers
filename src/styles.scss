@@ -44,11 +44,17 @@ body {
   border-radius: 0;
 }
 .modal-body {
+  form {
+    text-align: left;
+  }
   &.running {
     cursor: not-allowed;
   }
 }
 .modal-content {
+  .ld.message {
+    transform: translate(-50%,-50%);
+  }
   .ld-spin {
     font-size: 32px;
   }

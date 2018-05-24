@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { BrandsComponent } from './brands/brands.component';
+import { BrandsComponent } from './admin/brands/brands.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { InfluencersComponent } from './influencers/influencers.component';
+import { InfluencersComponent } from './admin/influencers/influencers.component';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
-  {path: "brands", component: BrandsComponent},
   {path: "contacts", component: ContactsComponent},
   {path: "sign-in", component: SignInComponent},
-  {path: "influencers", component: InfluencersComponent}
+  {path: "admin/brands", component: BrandsComponent},
+  {path: "admin/influencers", component: InfluencersComponent}
 ];
 
 @NgModule({

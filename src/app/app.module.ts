@@ -15,8 +15,8 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HeaderComponent } from './ui/header/header.component';
 import { FooterComponent } from './ui/footer/footer.component';
-import { BrandsComponent } from './brands/brands.component';
-import { InfluencersComponent } from './influencers/influencers.component';
+import { BrandsComponent } from './admin/brands/brands.component';
+import { InfluencersComponent } from './admin/influencers/influencers.component';
 import { InfluencersDialogComponent } from './home/influencers-dialog/influencers-dialog.component';
 import { BrandsDialogComponent } from './home/brands-dialog/brands-dialog.component';
 

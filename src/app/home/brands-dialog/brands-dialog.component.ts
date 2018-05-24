@@ -1,5 +1,5 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BsModalService } from 'ngx-bootstrap/modal';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -14,6 +14,8 @@ type FormErrors = { [u in UserFields]: string };
   styleUrls: ['./brands-dialog.component.scss']
 })
 export class BrandsDialogComponent implements OnInit {
+
+  @ViewChild(ModalDirective) modal: ModalDirective;
 
   brandsForm: FormGroup;
   formErrors: FormErrors = {
@@ -118,35 +120,28 @@ export class BrandsDialogComponent implements OnInit {
   }
 
   submit() {
+    let Brands = Parse.Object.extend("Brands4205");
+    let brands = new Brands();
     this.submitted = true;
-    var Brands = Parse.Object.extend("Brands4205");
-    var brands = new Brands();
-
-console.log(this.brandsForm.value);
+    let that = this;
 
     brands.save(this.brandsForm.value, {
       success: function(response) {
-        // TODO: 1) clear form 2) show success message
-        this.submitOk = true;
-        this.brandsForm.reset();
-        setTimeout(function(){
-          this.submitted = false;
-        }, 1000);
-        console.log(response);
+        that.submitOk = true;
+        that.brandsForm.reset();
       },
       error: function(response, error) {
-        // TODO: 1) show error message
-        this.submitError = true;
-        setTimeout(function(){
-          this.submitted = false;
-        }, 1000);
+        that.submitError = true;
         console.log('Failed to create new object, with error code: ', error);
       }
     });
   }
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+    this.modal.show();
   }
 
+  handler(type: string, $event: ModalDirective) {
+    this.submitted = false;
+  }
 }
