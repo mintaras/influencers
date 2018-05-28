@@ -3,3 +3,29 @@
     <h1>Influencers</h1>
   </div>
 </div>
+<section>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Firstname</th>
+          <th scope="col">Lastname</th>
+          <th scope="col">Instagram username</th>
+          <th scope="col">Youtube username</th>
+          <th scope="col">Groups</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let influencer of influencers; let i = index;">
+          <td scope="row">{{i+1}}</td>
+          <td class="brand-firstname">{{ influencer.attributes.firstname }}</td>
+          <td class="brand-lastname">{{ influencer.attributes.lastname }}</td>
+          <td class="brand-instagramUsername">{{ influencer.attributes.instagramUsername }}</td>
+          <td class="brand-youtubeUsername">{{ influencer.attributes.youtubeUsername }}</td>
+          <td class="brand-groups">{{ influencer.attributes.groups }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -19,6 +19,9 @@ import { BrandsComponent } from './admin/brands/brands.component';
 import { InfluencersComponent } from './admin/influencers/influencers.component';
 import { InfluencersDialogComponent } from './home/influencers-dialog/influencers-dialog.component';
 import { BrandsDialogComponent } from './home/brands-dialog/brands-dialog.component';
+import { SidebarComponent } from './admin/sidebar/sidebar.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,9 @@ import { BrandsDialogComponent } from './home/brands-dialog/brands-dialog.compon
     BrandsComponent,
     InfluencersComponent,
     InfluencersDialogComponent,
-    BrandsDialogComponent
+    BrandsDialogComponent,
+    SidebarComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,7 @@ import { BrandsDialogComponent } from './home/brands-dialog/brands-dialog.compon
     [ModalModule.forRoot()],
     [BsDatepickerModule.forRoot()]
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

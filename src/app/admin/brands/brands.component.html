@@ -19,11 +19,11 @@
       <tbody>
         <tr *ngFor="let brand of brands; let i = index;">
           <td scope="row">{{i+1}}</td>
-          <td class="brand-name">{{ brand.name }}</td>
-          <td class="brand-phone-number">{{ brand.phoneNumber }}</td>
-          <td class="brand-email">{{ brand.email }}</td>
-          <td class="brand-marketing-type">{{ brand.marketingType }}</td>
-          <td class="brand-budget">{{ brand.budget }}</td>
+          <td class="brand-name">{{ brand.attributes.name }}</td>
+          <td class="brand-phone-number">{{ brand.attributes.phoneNumber }}</td>
+          <td class="brand-email">{{ brand.attributes.email }}</td>
+          <td class="brand-marketing-type">{{ brand.attributes.marketingType }}</td>
+          <td class="brand-budget">{{ brand.attributes.budget }}</td>
         </tr>
       </tbody>
     </table>

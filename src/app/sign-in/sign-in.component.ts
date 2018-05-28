@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import * as Parse from 'parse';
 
-type UserFields = 'email' | 'password';
+type UserFields = 'username' | 'password';
 type FormErrors = { [u in UserFields]: string };
 
 @Component({
@@ -13,14 +14,14 @@ type FormErrors = { [u in UserFields]: string };
 export class SignInComponent implements OnInit {
 
   signInForm: FormGroup;
+  loginError: string = '';
   formErrors: FormErrors = {
-    'email': '',
+    'username': '',
     'password': ''
   }
   validationMessages = {
-    'email': {
-      'required': 'Email is required',
-      'email': 'Email must be valid'
+    'username': {
+      'required': 'Username is required'
     },
     'password': {
       'required': 'Password is required',
@@ -41,9 +42,8 @@ export class SignInComponent implements OnInit {
 
   buildForm() {
     this.signInForm = this.fb.group({
-      'email': ['', [
-        Validators.required,
-        Validators.email
+      'username': ['', [
+        Validators.required
       ]],
       'password': ['', [
         Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
@@ -83,6 +83,17 @@ export class SignInComponent implements OnInit {
   }
 
   login() {
-    this.router.navigate(['']);
+    Parse.User.logIn(
+      this.signInForm.value['username'],
+      this.signInForm.value['password'], {
+      success: (user) => {
+        this.router.navigate(['admin/dashboard']);
+      },
+      error: (user, error) => {
+        // The login failed. Check error to see why.
+        this.loginError = error.message;
+        console.log(error.message);
+      }
+    });
   }
 }

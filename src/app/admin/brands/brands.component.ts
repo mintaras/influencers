@@ -18,17 +18,15 @@ export class BrandsComponent implements OnInit {
 
   fetchBrands() {
     let Brands = Parse.Object.extend("Brands4205");
-    let brands = new Parse.Query(Brands);
-    let that = this;
+    let brandsQuery = new Parse.Query(Brands);
 
-    brands.find({
+    brandsQuery.find({
+      success: (response) => {
+        this.brands = response;
+      },
       error: function(response, error) {
         console.log('Failed to create new object, with error code: ', error);
       }
-    }).then(function(results) {
-      let str = JSON.stringify(results);
-      let obj = JSON.parse(str);
-      that.brands = obj;
     });
   }
 
