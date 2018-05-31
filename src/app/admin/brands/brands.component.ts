@@ -25,7 +25,7 @@ export class BrandsComponent implements OnInit {
         this.brands = response;
       },
       error: function(response, error) {
-        console.log('Failed to create new object, with error code: ', error);
+        console.log('Failed to create new object, with error code: ', response, error);
       }
     });
   }

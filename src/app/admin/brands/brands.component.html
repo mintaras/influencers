@@ -1,31 +1,34 @@
-<div class="hero">
+<div class="admin">
   <div class="container">
-    <h1>Brands</h1>
+  <div class="row">
+    <div class="col-md-3">
+      <app-sidebar></app-sidebar>
+    </div>
+    <main class="col-md-9 main">
+      <h3>Brands</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Phone number</th>
+              <th scope="col">Email</th>
+              <th scope="col">Marketing type</th>
+              <th scope="col">Budget</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let brand of brands; let i = index;">
+              <td scope="row">{{i+1}}</td>
+              <td class="brand-name">{{ brand.attributes.name }}</td>
+              <td class="brand-phone-number">{{ brand.attributes.phoneNumber }}</td>
+              <td class="brand-email">{{ brand.attributes.email }}</td>
+              <td class="brand-marketing-type">{{ brand.attributes.marketingType }}</td>
+              <td class="brand-budget">{{ brand.attributes.budget }}</td>
+            </tr>
+          </tbody>
+        </table>
+    </main>
   </div>
 </div>
-<section>
-  <div class="container">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Phone number</th>
-          <th scope="col">Email</th>
-          <th scope="col">Marketing type</th>
-          <th scope="col">Budget</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let brand of brands; let i = index;">
-          <td scope="row">{{i+1}}</td>
-          <td class="brand-name">{{ brand.attributes.name }}</td>
-          <td class="brand-phone-number">{{ brand.attributes.phoneNumber }}</td>
-          <td class="brand-email">{{ brand.attributes.email }}</td>
-          <td class="brand-marketing-type">{{ brand.attributes.marketingType }}</td>
-          <td class="brand-budget">{{ brand.attributes.budget }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
+</div>

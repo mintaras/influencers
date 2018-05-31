@@ -3,11 +3,11 @@ import * as Parse from 'parse';
 import { InfluencersService } from '../../_services/influencers.service';
 
 @Component({
-  selector: 'app-influencers',
-  templateUrl: './influencers.component.html',
-  styleUrls: ['./influencers.component.scss']
+  selector: 'app-registrations',
+  templateUrl: './registrations.component.html',
+  styleUrls: ['./registrations.component.scss']
 })
-export class InfluencersComponent implements OnInit {
+export class RegistrationsComponent implements OnInit {
 
   influencers: any;
 

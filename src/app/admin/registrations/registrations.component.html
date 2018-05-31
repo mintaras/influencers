@@ -1,11 +1,11 @@
 <div class="admin">
-<div class="container">
+  <div class="container">
   <div class="row">
     <div class="col-md-3">
       <app-sidebar></app-sidebar>
     </div>
     <main class="col-md-9 main">
-      <h3>Influencers</h3>
+      <h3>Registrations</h3>
         <table class="table">
           <thead>
             <tr>
@@ -17,6 +17,7 @@
               <th scope="col">Instagram username</th>
               <th scope="col">Youtube username</th>
               <th scope="col">Groups</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -29,6 +30,10 @@
               <td class="influencer-instagramUsername">{{ influencer.attributes.instagramUsername }}</td>
               <td class="influencer-youtubeUsername">{{ influencer.attributes.youtubeUsername }}</td>
               <td class="influencer-groups">{{ influencer.attributes.groups }}</td>
+              <td class="actions">
+                <a routerLink="" class="btn btn-success btn-sm" (click)="approve">Approve</a>
+                <a routerLink="" class="btn btn-danger btn-sm" (click)="delete">Delete</a>
+              </td>
             </tr>
           </tbody>
         </table>

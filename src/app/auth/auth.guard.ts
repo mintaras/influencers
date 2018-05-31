@@ -16,13 +16,10 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       const currentUser = Parse.User.current();
-      console.log(currentUser);
-      if (currentUser) {
-          // do stuff with the user
-          return true;
-      } else {
-          // show the signup or login page
+      if (!currentUser) {
           this.router.navigate(['admin/login']);
+          return false;
       }
+      return true;
   }
 }

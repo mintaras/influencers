@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as Parse from 'parse';
 
-type UserFields = 'firstname' | 'lastname' | 'instagramUsername' | 'youtubeUsername' | 'groups';
+type UserFields = 'firstname' | 'lastname' | 'instagramUsername' | 'youtubeUsername' | 'groups' | 'email' | 'phoneNumber' | 'city';
 type FormErrors = { [u in UserFields]: string };
 
 @Component({
@@ -20,6 +20,9 @@ export class InfluencersDialogComponent implements OnInit {
   formErrors: FormErrors = {
     'firstname': '',
     'lastname': '',
+    'email': '',
+    'phoneNumber': '',
+    'city': '',
     'instagramUsername': '',
     'youtubeUsername': '',
     'groups': ''
@@ -29,6 +32,16 @@ export class InfluencersDialogComponent implements OnInit {
       'required': 'Field is required'
     },
     'lastname': {
+      'required': 'Field is required'
+    },
+    'email': {
+      'email': 'Enter valid email',
+      'required': 'Field is required'
+    },
+    'phoneNumber': {
+      'required': 'Field is required'
+    },
+    'city': {
       'required': 'Field is required'
     },
     'instagramUsername': {
@@ -62,6 +75,16 @@ export class InfluencersDialogComponent implements OnInit {
         Validators.required
       ]],
       'lastname': ['', [
+        Validators.required
+      ]],
+      'email': ['', [
+        Validators.email,
+        Validators.required
+      ]],
+      'phoneNumber': ['', [
+        Validators.required
+      ]],
+      'city': ['', [
         Validators.required
       ]],
       'instagramUsername': ['', [

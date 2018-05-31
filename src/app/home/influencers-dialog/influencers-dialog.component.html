@@ -36,6 +36,21 @@
         </div>
 
         <div class="form-group">
+          <input type="email" formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="Email" required>
+          <small id="emailHelp" class="form-text text-danger" *ngIf="formErrors.email">{{ formErrors.email }}</small>
+        </div>
+
+        <div class="form-group">
+          <input type="text" formControlName="phoneNumber" class="form-control" aria-describedby="phoneNumberHelp" placeholder="Phone number" required>
+          <small id="phoneNumberHelp" class="form-text text-danger" *ngIf="formErrors.phoneNumber">{{ formErrors.phoneNumber }}</small>
+        </div>
+
+        <div class="form-group">
+          <input type="text" formControlName="city" class="form-control" aria-describedby="cityHelp" placeholder="City" required>
+          <small id="cityHelp" class="form-text text-danger" *ngIf="formErrors.city">{{ formErrors.city }}</small>
+        </div>
+
+        <div class="form-group">
           <input type="text" formControlName="instagramUsername" class="form-control" id="inputInstagramUsername" aria-describedby="instagramUsernameHelp" placeholder="Instagram username" required>
           <small id="instagramUsernameHelp" class="form-text text-danger" *ngIf="formErrors.instagramUsername">{{ formErrors.instagramUsername }}</small>
         </div>
@@ -48,6 +63,7 @@
           <input type="text" formControlName="groups" class="form-control" id="inputGroups" aria-describedby="groupsHelp" placeholder="Groups" required>
           <small id="groupsHelp" class="form-text text-danger" *ngIf="formErrors.groups">{{ formErrors.groups }}</small>
         </div>
+
         <button type="submit" [disabled]="!influencersForm.valid" class="btn btn-primary">Submit</button>
       </form>
     </div>

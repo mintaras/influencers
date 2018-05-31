@@ -6,6 +6,8 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { InfluencersComponent } from './admin/influencers/influencers.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { RegistrationsComponent } from './admin/registrations/registrations.component';
+import { CampaignsComponent } from './admin/campaigns/campaigns.component';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
@@ -14,7 +16,9 @@ const routes: Routes = [
   {path: "admin/login", component: SignInComponent},
   {path: "admin/dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
   {path: "admin/brands", component: BrandsComponent, canActivate: [AuthGuard]},
-  {path: "admin/influencers", component: InfluencersComponent, canActivate: [AuthGuard]}
+  {path: "admin/influencers", component: InfluencersComponent, canActivate: [AuthGuard]},
+  {path: "admin/registrations", component: RegistrationsComponent, canActivate: [AuthGuard]},
+  {path: "admin/campaigns", component: CampaignsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
