@@ -1,43 +1,108 @@
 <div class="admin">
   <div class="container">
-  <div class="row">
-    <div class="col-md-3">
-      <app-sidebar></app-sidebar>
-    </div>
-    <main class="col-md-9 main">
-      <h3>Registrations</h3>
-        <table class="table">
+    <div class="row">
+      <div class="col-md-3">
+        <app-sidebar></app-sidebar>
+      </div>
+      <main class="col-md-9 main">
+        <h3>Influencers</h3>
+        <table class="table table-sm table-influencers">
           <thead>
             <tr>
-              <th scope="col">Firstname</th>
-              <th scope="col">Lastname</th>
+              <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Phone number</th>
-              <th scope="col">City</th>
-              <th scope="col">Instagram username</th>
-              <th scope="col">Youtube username</th>
-              <th scope="col">Groups</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let influencer of influencers">
-              <td class="influencer-firstname">{{ influencer.attributes.firstname }}</td>
-              <td class="influencer-lastname">{{ influencer.attributes.lastname }}</td>
+              <td class="influencer-fulltname">{{ influencer.attributes.firstname }} {{ influencer.attributes.lastname }}</td>
               <td class="influencer-email">{{ influencer.attributes.email }}</td>
               <td class="influencer-phoneNumber">{{ influencer.attributes.phoneNumber }}</td>
-              <td class="influencer-city">{{ influencer.attributes.city }}</td>
-              <td class="influencer-instagramUsername">{{ influencer.attributes.instagramUsername }}</td>
-              <td class="influencer-youtubeUsername">{{ influencer.attributes.youtubeUsername }}</td>
-              <td class="influencer-groups">{{ influencer.attributes.groups }}</td>
               <td class="actions">
-                <a routerLink="" class="btn btn-success btn-sm" (click)="approve">Approve</a>
-                <a routerLink="" class="btn btn-danger btn-sm" (click)="delete">Delete</a>
+                <a [routerLink]="null" class="btn btn-secondary btn-sm" (click)="openModal(influencer, 'influencer')">Review</a>
               </td>
             </tr>
           </tbody>
         </table>
-    </main>
+        <h3>Brands</h3>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone number</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let brand of brands">
+              <td class="influencer-firstname">{{ brand.attributes.name }}</td>
+              <td class="influencer-email">{{ brand.attributes.email }}</td>
+              <td class="influencer-phoneNumber">{{ brand.attributes.phoneNumber }}</td>
+              <td class="actions">
+                <a [routerLink]="null" class="btn btn-secondary btn-sm" (click)="openModal(brand, 'brand')">Review</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+    </div>
   </div>
-</div>
+
+  <div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-events-name" (onHidden)="handler('onHidden', $event)">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content" *ngIf="registration">
+        <div class="modal-header" (onHidden)="handler('onHidden', $event)">
+          <h4 class="modal-title pull-left" *ngIf="registration.firstname">{{ registration.firstname }} {{ registration.lastname }}</h4>
+          <h4 class="modal-title pull-left" *ngIf="registration.name">{{ registration.name }}</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="separator"></div>
+        <div class="modal-body">
+          <div class="influencer-email">
+            <span class="font-weight-bold">Email: </span>
+            {{ registration.email }}
+          </div>
+          <div class="influencer-phoneNumber">
+            <span class="font-weight-bold">Phone number: </span>
+            {{ registration.phoneNumber }}
+          </div>
+          <div class="influencer-city" *ngIf="registration.city">
+            <span class="font-weight-bold">City: </span>
+            {{ registration.city }}
+          </div>
+          <div class="influencer-instagramUsername" *ngIf="registration.instagramUsername">
+            <span class="font-weight-bold">Instagram: </span>
+            {{ registration.instagramUsername }}
+          </div>
+          <div class="influencer-youtubeUsername" *ngIf="registration.youtubeUsername">
+            <span class="font-weight-bold">Youtube: </span>
+            {{ registration.youtubeUsername }}
+          </div>
+          <div class="influencer-groups" *ngIf="registration.groups">
+            <span class="font-weight-bold">Groups: </span>
+            {{ registration.groups }}
+          </div>
+          <div class="influencer-marketing-type" *ngIf="registration.marketingType">
+            <span class="font-weight-bold">Marketing type: </span>
+            {{ registration.marketingType }}
+          </div>
+          <div class="influencer-budget" *ngIf="registration.budget">
+            <span class="font-weight-bold">Budget: </span>
+            {{ registration.budget }}
+          </div>
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Create new</button>
+            <button type="button" class="btn btn-success">Approve</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
 </div>

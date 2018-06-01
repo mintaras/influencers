@@ -87,7 +87,7 @@ export class SignInComponent implements OnInit {
       this.signInForm.value['username'],
       this.signInForm.value['password'], {
       success: (user) => {
-        this.router.navigate(['admin/dashboard']);
+        this.router.navigate(['admin/registrations']);
       },
       error: (user, error) => {
         // The login failed. Check error to see why.

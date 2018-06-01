@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Parse from 'parse';
+import { BrandsService } from '../../_services/brands.service';
 
 @Component({
   selector: 'app-brands',
@@ -10,24 +11,10 @@ export class BrandsComponent implements OnInit {
 
   brands: any;
 
-  constructor() { }
+  constructor(private bS: BrandsService) { }
 
   ngOnInit() {
-    this.fetchBrands();
-  }
-
-  fetchBrands() {
-    let Brands = Parse.Object.extend("Brands4205");
-    let brandsQuery = new Parse.Query(Brands);
-
-    brandsQuery.find({
-      success: (response) => {
-        this.brands = response;
-      },
-      error: function(response, error) {
-        console.log('Failed to create new object, with error code: ', response, error);
-      }
-    });
+    this.bS.getBrands().then(result => this.brands = result);
   }
 
 }

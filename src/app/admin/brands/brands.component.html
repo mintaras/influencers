@@ -6,10 +6,9 @@
     </div>
     <main class="col-md-9 main">
       <h3>Brands</h3>
-        <table class="table">
+        <table class="table table-sm">
           <thead>
             <tr>
-              <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Phone number</th>
               <th scope="col">Email</th>
@@ -18,8 +17,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let brand of brands; let i = index;">
-              <td scope="row">{{i+1}}</td>
+            <tr *ngFor="let brand of brands">
               <td class="brand-name">{{ brand.attributes.name }}</td>
               <td class="brand-phone-number">{{ brand.attributes.phoneNumber }}</td>
               <td class="brand-email">{{ brand.attributes.email }}</td>
